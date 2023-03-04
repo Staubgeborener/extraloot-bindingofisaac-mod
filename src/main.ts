@@ -1,4 +1,5 @@
 import { ModCallback } from "isaac-typescript-definitions";
+import { isAllRoomsClear } from "isaacscript-common";
 
 const MOD_NAME = "extraloot";
 
@@ -14,6 +15,12 @@ function main() {
 
   // Print a message to the "log.txt" file.
   Isaac.DebugString(`${MOD_NAME} initialized.`);
+
+  mod.AddCallback(ModCallback.POST_UPDATE, () => {
+    // print(Game().GetLevel().GetCurrentRoomDesc().ClearCount);
+    // print(Game().GetLevel().GetRooms().Get(1));
+    print(isAllRoomsClear());
+  });
 }
 
 function postGameStarted() {
